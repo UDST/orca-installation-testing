@@ -16,7 +16,7 @@ init:
 before_install:
   - "set PATH=C:\\Miniconda3;C:\\Miniconda3\\Scripts;%PATH%"
   - conda update conda --yes --quiet
-  - "conda create --name test-env python=%PYTHON% pytest --yes --quiet"
+  - "conda create --name test-env python=%PYTHON% pytest pip --yes --quiet"
   - activate test-env
 
 install:
