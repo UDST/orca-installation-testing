@@ -1,14 +1,23 @@
 build: false
 
-env:
-  - PYTHON='2.7' PKG='pip'
-  - PYTHON='2.7' PKG='conda'
-  - PYTHON='3.5' PKG='pip'
-  - PYTHON='3.5' PKG='conda'
-  - PYTHON='3.6' PKG='pip'
-  - PYTHON='3.6' PKG='conda'
-  - PYTHON='3.7' PKG='pip'
-  - PYTHON='3.7' PKG='conda'
+environment:
+  matrix:
+    - PYTHON: 2.7
+      PKG: pip
+    - PYTHON: 2.7
+      PKG: conda
+    - PYTHON: 3.5
+      PKG: pip
+    - PYTHON: 3.5
+      PKG: conda
+    - PYTHON: 3.6
+      PKG: pip
+    - PYTHON: 3.6
+      PKG: conda
+    - PYTHON: 3.7
+      PKG: pip
+    - PYTHON: 3.7
+      PKG: conda
 
 init:
   - "ECHO %PYTHON% %PKG%"
