@@ -20,7 +20,8 @@ init:
 
 install:
   - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
-  - "conda create --name test-env python=%PYTHON% pytest --yes"
+  - conda update conda --quiet
+  - "conda create --name test-env python=%PYTHON% pytest --yes --quiet"
   - activate test-env
   - ps: |
       if ($env:PKG -eq "pip")
@@ -31,7 +32,7 @@ install:
   - ps: |
       if ($env:PKG -eq "conda")
       {
-        conda install pytables --channel conda-forge
+        conda install pytables --channel conda-forge --yes --quiet
         conda list
       }
 
