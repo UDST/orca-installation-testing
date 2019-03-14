@@ -2,22 +2,38 @@ build: false
 
 environment:
   matrix:
-    - PYTHON_VERSION: 2.7
+    - PYTHON: 2.7
+      PKG: pip
       MINICONDA: C:\Miniconda
-    - PYTHON_VERSION: 3.6
+    - PYTHON: 2.7
+      PKG: conda
+      MINICONDA: C:\Miniconda
+    - PYTHON: 3.6
+      PKG: pip
+      MINICONDA: C:\Miniconda3
+    - PYTHON: 3.6
+      PKG: conda
       MINICONDA: C:\Miniconda3
 
 init:
-  - "ECHO %PYTHON_VERSION% %MINICONDA%"
+  - "ECHO %PYTHON% %PKG%"
 
 install:
   - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
-  - conda config --set always_yes yes --set changeps1 no
-  - conda update -q conda
-  - conda info -a
-  - "conda create -q -n test-env python=%PYTHON_VERSION% pytest"
+  - "conda create --name test-env python=%PYTHON% pytest --yes"
   - activate test-env
-  - pip install tables
+  - ps: |
+      if ($env:PKG -eq "pip")
+      {
+        pip install tables
+        pip list
+      }
+  - ps: |
+      if ($env:PKG -eq "conda")
+      {
+        conda install pytables --channel conda-forge
+        conda list
+      }
 
 test_script:
   - py.test

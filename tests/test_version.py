@@ -1,4 +1,4 @@
-import pytables
+import tables
 import pytest
 
 def test_version():
