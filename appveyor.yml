@@ -27,13 +27,13 @@ install:
   - conda update conda --yes --quiet
   - "conda create --name test-env python=%PYTHON% pytest pip --yes --quiet"
   - activate test-env
-  - ps: |
+  - cmd: |
       if ($env:PKG -eq "pip")
       {
         pip install tables -qqq  # qq to suppress python 2.7 deprecation error
         pip list
       }
-  - ps: |
+  - cmd: |
       if ($env:PKG -eq "conda")
       {
         conda install pytables --channel conda-forge --yes --quiet
