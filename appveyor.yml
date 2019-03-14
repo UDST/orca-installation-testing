@@ -19,6 +19,17 @@ environment:
     - PYTHON: 3.7
       PKG: conda
 
+# Pip has fatal errors with older versions of python when running inside the powershell
+# conditional; hopefully we can find a way around this at some point
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - PYTHON: 2.7
+      PKG: pip
+    - PYTHON: 3.5
+      PKG: pip
+
 init:
   - "ECHO %PYTHON% %PKG%"
 
@@ -27,13 +38,13 @@ install:
   - conda update conda --yes --quiet
   - "conda create --name test-env python=%PYTHON% pytest pip --yes --quiet"
   - activate test-env
-  - cmd: |
+  - ps: |
       if ($env:PKG -eq "pip")
       {
-        pip install tables -qqq  # qq to suppress python 2.7 deprecation error
+        pip install tables
         pip list
       }
-  - cmd: |
+  - ps: |
       if ($env:PKG -eq "conda")
       {
         conda install pytables --channel conda-forge --yes --quiet
