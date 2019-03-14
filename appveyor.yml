@@ -30,7 +30,7 @@ install:
   - ps: |
       if ($env:PKG -eq "pip")
       {
-        pip install tables -qq  # qq to suppress python 2.7 deprecation error
+        pip install -qq tables  # qq to suppress python 2.7 deprecation error
         pip list
       }
   - ps: |
