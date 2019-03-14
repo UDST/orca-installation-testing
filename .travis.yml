@@ -14,14 +14,6 @@ env:
   - PYTHON='3.7' PKG='pip'
   - PYTHON='3.7' PKG='conda'
 
-matrix:
-  allow_failures: # not installing right in these environments because of pytables
-  - os: linux
-    env: PYTHON='3.7' PKG='pip'
-  - os: osx
-    env: PYTHON='3.7' PKG='pip'
-  fast_finish: true
-
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export OS="Linux"; fi
   - if [ "$TRAVIS_OS_NAME" == "osx" ]; then export OS="MacOSX"; fi
@@ -34,12 +26,12 @@ before_install:
 install:
   - |
     if [ "$PKG" == "pip" ]; then 
-      pip install orca==1.5.1 pytest
+      pip install orca pytest
       pip list
     fi
   - |
     if [ "$PKG" == "conda" ]; then 
-      conda install orca=1.5.1 pytest --channel conda-forge --yes
+      conda install orca pytest --channel conda-forge --yes
       conda list
     fi
 
