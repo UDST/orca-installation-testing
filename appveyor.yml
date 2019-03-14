@@ -20,7 +20,7 @@ init:
 
 install:
   - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
-  - conda update conda --quiet
+  - conda update conda --yes --quiet
   - "conda create --name test-env python=%PYTHON% pytest --yes --quiet"
   - activate test-env
   - ps: |
