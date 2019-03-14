@@ -41,13 +41,13 @@ install:
   - ps: |
       if ($env:PKG -eq "pip")
       {
-        pip install tables
+        pip install orca
         pip list
       }
   - ps: |
       if ($env:PKG -eq "conda")
       {
-        conda install pytables --channel conda-forge --yes --quiet
+        conda install orca --channel conda-forge --yes --quiet
         conda list
       }
 

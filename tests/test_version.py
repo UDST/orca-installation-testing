@@ -1,5 +1,5 @@
 import tables
-import pytest
+import orca
 
 def test_version():
     # Conda release has the wrong version number currently, so this test won't pass

@@ -20,18 +20,18 @@ before_install:
   - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-$OS-x86_64.sh -O miniconda.sh
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
-  - conda create --name test-env python=$PYTHON --yes
+  - conda create --name test-env python=$PYTHON pytest --yes
   - source activate test-env
 
 install:
   - |
     if [ "$PKG" == "pip" ]; then 
-      pip install orca pytest
+      pip install orca
       pip list
     fi
   - |
     if [ "$PKG" == "conda" ]; then 
-      conda install orca pytest --channel conda-forge --yes
+      conda install orca --channel conda-forge --yes
       conda list
     fi
 
