@@ -4,41 +4,33 @@ environment:
   matrix:
     - PYTHON: 2.7
       PKG: pip
-      MINICONDA: C:\Miniconda
     - PYTHON: 2.7
       PKG: conda
-      MINICONDA: C:\Miniconda
     - PYTHON: 3.5
       PKG: pip
-      MINICONDA: C:\Miniconda3
     - PYTHON: 3.5
       PKG: conda
-      MINICONDA: C:\Miniconda3
     - PYTHON: 3.6
       PKG: pip
-      MINICONDA: C:\Miniconda3
     - PYTHON: 3.6
       PKG: conda
-      MINICONDA: C:\Miniconda3
     - PYTHON: 3.7
       PKG: pip
-      MINICONDA: C:\Miniconda3
     - PYTHON: 3.7
       PKG: conda
-      MINICONDA: C:\Miniconda3
 
 init:
   - "ECHO %PYTHON% %PKG%"
 
 install:
-  - "set PATH=%MINICONDA%;%MINICONDA%\\Scripts;%PATH%"
+  - "set PATH=C:\Miniconda3;C:\Miniconda3\\Scripts;%PATH%"
   - conda update conda --yes --quiet
   - "conda create --name test-env python=%PYTHON% pytest --yes --quiet"
   - activate test-env
   - ps: |
       if ($env:PKG -eq "pip")
       {
-        pip install tables --quiet
+        pip install tables -qq  # qq to suppress python 2.7 deprecation error
         pip list
       }
   - ps: |
