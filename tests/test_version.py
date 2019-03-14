@@ -1,4 +1,4 @@
-import orca
+import pytables
 import pytest
 
 def test_version():
