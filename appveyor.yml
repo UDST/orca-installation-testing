@@ -27,10 +27,11 @@ install:
   - conda update conda --yes --quiet
   - "conda create --name test-env python=%PYTHON% pytest --yes --quiet"
   - activate test-env
-  - ps: |
+  - ps: >-
       if ($env:PKG -eq "pip")
+      
       {
-        pip install -qq tables  # qq to suppress python 2.7 deprecation error
+        pip install tables -qqq  # qq to suppress python 2.7 deprecation error
         pip list
       }
   - ps: |
