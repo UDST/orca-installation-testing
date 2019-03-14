@@ -8,10 +8,22 @@ environment:
     - PYTHON: 2.7
       PKG: conda
       MINICONDA: C:\Miniconda
+    - PYTHON: 3.5
+      PKG: pip
+      MINICONDA: C:\Miniconda3
+    - PYTHON: 3.5
+      PKG: conda
+      MINICONDA: C:\Miniconda3
     - PYTHON: 3.6
       PKG: pip
       MINICONDA: C:\Miniconda3
     - PYTHON: 3.6
+      PKG: conda
+      MINICONDA: C:\Miniconda3
+    - PYTHON: 3.7
+      PKG: pip
+      MINICONDA: C:\Miniconda3
+    - PYTHON: 3.7
       PKG: conda
       MINICONDA: C:\Miniconda3
 
@@ -26,7 +38,7 @@ install:
   - ps: |
       if ($env:PKG -eq "pip")
       {
-        pip install tables
+        pip install tables --quiet
         pip list
       }
   - ps: |
