@@ -20,4 +20,4 @@ install:
   - pip install tables
 
 test_script:
-  - pytest tests/*.py
+  - py.test
