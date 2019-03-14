@@ -23,7 +23,7 @@ init:
   - "ECHO %PYTHON% %PKG%"
 
 install:
-  - "set PATH=C:\Miniconda3;C:\Miniconda3\\Scripts;%PATH%"
+  - "set PATH=C:\\Miniconda3;C:\\Miniconda3\\Scripts;%PATH%"
   - conda update conda --yes --quiet
   - "conda create --name test-env python=%PYTHON% pytest --yes --quiet"
   - activate test-env
