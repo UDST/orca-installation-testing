@@ -1,35 +1,27 @@
 build: false
 
-environment:
-  matrix:
-    - PYTHON: 2.7
-      PKG: pip
-    - PYTHON: 2.7
-      PKG: conda
-    - PYTHON: 3.5
-      PKG: pip
-    - PYTHON: 3.5
-      PKG: conda
-    - PYTHON: 3.6
-      PKG: pip
-    - PYTHON: 3.6
-      PKG: conda
-    - PYTHON: 3.7
-      PKG: pip
-    - PYTHON: 3.7
-      PKG: conda
+env:
+  - PYTHON='2.7' PKG='pip'
+  - PYTHON='2.7' PKG='conda'
+  - PYTHON='3.5' PKG='pip'
+  - PYTHON='3.5' PKG='conda'
+  - PYTHON='3.6' PKG='pip'
+  - PYTHON='3.6' PKG='conda'
+  - PYTHON='3.7' PKG='pip'
+  - PYTHON='3.7' PKG='conda'
 
 init:
   - "ECHO %PYTHON% %PKG%"
 
-install:
+before_install:
   - "set PATH=C:\\Miniconda3;C:\\Miniconda3\\Scripts;%PATH%"
   - conda update conda --yes --quiet
   - "conda create --name test-env python=%PYTHON% pytest --yes --quiet"
   - activate test-env
-  - ps: >-
+
+install:
+  - ps: |
       if ($env:PKG -eq "pip")
-      
       {
         pip install tables -qqq  # qq to suppress python 2.7 deprecation error
         pip list
