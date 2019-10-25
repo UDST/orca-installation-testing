@@ -13,8 +13,6 @@ env:
   - PYTHON='3.6' PKG='conda'
   - PYTHON='3.7' PKG='pip'
   - PYTHON='3.7' PKG='conda'
-  - PYTHON='3.8' PKG='pip'
-  - PYTHON='3.8' PKG='conda'
 
 before_install:
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then export OS="Linux"; fi
